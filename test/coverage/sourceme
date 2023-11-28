@@ -1,0 +1,61 @@
+# Fail on error
+set -e
+
+# Allow read permission for created files
+umask 022
+
+# Make sure SHELL is set
+if [ -z ${SHELL} ]
+then
+    SHELL='/system/bin/sh'
+fi
+
+# Path to script directory
+SCRIPTDIR=$(realpath $(dirname $0))
+
+function run()
+{
+    echo $@ >&2
+    $@
+}
+
+function run_null()
+{
+    echo $@ >&2
+    $@ > /dev/null
+}
+
+function shell()
+{
+    echo $@ >&2
+    local cmd="$SHELL $SCRIPTDIR/$1"
+    shift
+    $cmd $@
+}
+
+function shell_null()
+{
+    echo $@ >&2
+    local cmd="$SHELL $SCRIPTDIR/$1"
+    shift
+    $cmd $@ > /dev/null
+}
+
+function pid_running()
+{
+    local pid=$1
+
+    if [ -e "/proc/$pid" ]
+    then
+        return 0
+    fi
+
+    return 1
+}
+
+function is_android()
+{
+    which am > /dev/null
+    return $?
+}
+

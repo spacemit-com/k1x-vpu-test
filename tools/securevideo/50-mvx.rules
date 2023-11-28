@@ -1,0 +1,2 @@
+KERNELS=="amvx_if", SUBSYSTEM=="securevideo", ACTION=="add", ENV{TYPE}=="firmware", RUN+="mvx_securehelper firmware /lib/firmware/$env{FIRMWARE} /sys$env{DEVPATH}/firmware $env{NUMCORES}"
+KERNELS=="amvx_if", SUBSYSTEM=="securevideo", ACTION=="add", ENV{TYPE}=="memory", RUN+="mvx_securehelper memory $env{SIZE} /sys$env{DEVPATH}/memory"

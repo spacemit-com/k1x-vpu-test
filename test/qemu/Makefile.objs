@@ -1,0 +1,8 @@
+MVE_CFLAGS += -I$(MVE6)/emul -I $(MVE6)/fw/include
+
+common-obj-y += mve_pci.o
+mve_pci.o-cflags += $(MVE_CFLAGS)
+
+common-obj-y += mve_emul.o
+mve_emul.o-libs := $(MVE6)/emul/out/emul-linux64/libmveemul.a
+mve_emul.o-cflags += $(MVE_CFLAGS)

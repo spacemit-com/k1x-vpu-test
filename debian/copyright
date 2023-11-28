@@ -1,0 +1,237 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: k1x-vpu-test
+Source: <url://example.com>
+#
+# Please double check copyright with the licensecheck(1) command.
+
+Files:     CMakeLists.txt
+           test/coverage/Parkrun_576i_10fr_30fps_HP_PicAFF_JM18.264
+           test/coverage/SA10196_10s_7f.vc1
+           test/coverage/SMH0002_6f.rcv
+           test/coverage/SSM0012_6f.rcv
+           test/coverage/coverage_report.sh
+           test/coverage/cts.sh
+           test/coverage/drain.sh
+           test/coverage/gather_on_test.sh
+           test/coverage/h264enc.prot-ver.fwb
+           test/coverage/input.h264
+           test/coverage/insmod.sh
+           test/coverage/run_coverage.sh
+           test/coverage/run_fw_fails.sh
+           test/coverage/run_kill.sh
+           test/coverage/run_mini_coverage.sh
+           test/coverage/run_mvx_controls_utils.sh
+           test/coverage/run_mvx_encode_decode.sh
+           test/coverage/run_mvx_suspend_resume.sh
+           test/coverage/run_mvx_utils.sh
+           test/coverage/run_omx_cts.sh
+           test/coverage/severity.sh
+           test/coverage/sony_480p_0_6_track1.hevc
+           test/coverage/sourceme
+           test/md5/CMakeLists.txt
+           test/mvx_player/CMakeLists.txt
+           test/qemu/Makefile.objs
+           test/unit/ngUnit.py
+           test/unit/utest.001.0001.py
+           test/unit/utest.001.0002.py
+           test/unit/utest.001.0003.py
+           test/unit/utest.001.0004.py
+           test/unit/utest.001.0005.py
+           test/unit/utest.001.0006.py
+           test/unit/utest.001.0007.py
+           test/userptr/CMakeLists.txt
+           test/utils/CMakeLists.txt
+           tools/logd/CMakeLists.txt
+           tools/securevideo/50-mvx.rules
+Copyright: __NO_COPYRIGHT_NOR_LICENSE__
+License:   __NO_COPYRIGHT_NOR_LICENSE__
+
+Files:     include/mvx-v4l2-controls.h
+           include/mvx_argparse.h
+           include/mvx_list.h
+           include/mvx_log_ram.h
+           test/mvx_player/mvx_decoder.cpp
+           test/mvx_player/mvx_decoder_multi.cpp
+           test/mvx_player/mvx_encoder.cpp
+           test/mvx_player/mvx_encoder_gen.cpp
+           test/mvx_player/mvx_encoder_multi.cpp
+           test/mvx_player/mvx_info.cpp
+           test/mvx_player/mvx_player.hpp
+           test/mvx_player/reader/parser.h
+           test/mvx_player/reader/read_util.h
+           test/qemu/mve_emul.h
+           test/unit/utest.002.0001.c
+           test/unit/utest.002.0002.c
+           test/unit/utest.002.0003.c
+           test/unit/utest.002.0004.c
+           test/unit/utest.002.0005.c
+           test/unit/utest.002.0006.c
+           test/unit/utest.002.0007.c
+           test/unit/utest.002.0008.c
+           test/unit/utest.002.0009.c
+           test/unit/utest.002.0010.c
+           test/unit/utest.003.0001.c
+           test/unit/utest.003.0002.c
+           test/unit/utest.003.0003.c
+           test/unit/utest.003.0004.c
+           test/unit/utest.003.0005.c
+           test/unit/utest.003.0006.c
+           test/unit/utest.003.0007.c
+           test/unit/utest.003.0008.c
+           test/unit/utest.003.0009.c
+           test/userptr/mvx_userptr.cpp
+           test/utils/mvx_argparse.h
+           test/utils/mvx_list.h
+           tools/logd/mvx_logd.hpp
+           tools/securevideo/mvx_securevideo.cpp
+Copyright: 2021 Arm Technology (China) Co., Ltd.
+License:   GPL-2.0+
+ This entire notice must be reproduced on all copies of this file
+ and copies of this file may only be made by a person if such person is
+ permitted to do so under the terms of a subsisting license agreement
+ from Arm Technology (China) Co., Ltd.
+ .
+ SPDX-License-Identifier: GPL-2.0-only
+ .
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ Version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+
+Files:     test/mvx_player/mvx_player.cpp
+           test/qemu/mve_emul.c
+           test/qemu/mve_pci.c
+           tools/logd/mvx_logd.cpp
+           tools/logd/mvx_logd_fwif_v2.cpp
+           tools/securevideo/mvx_securehelper.cpp
+           tools/securevideo/mvx_secureplayer.cpp
+           tools/securevideo/mvx_securevideo.hpp
+Copyright: 2021 Arm Technology (China) Co., Ltd.
+License:   GPL-2.0+
+ This entire notice must be reproduced on all copies of this file
+ and copies of this file may only be made by a person if such person is
+ permitted to do so under the terms of a subsisting license agreement
+ from Arm Technology (China) Co., Ltd.
+ .
+ SPDX-License-Identifier: GPL-2.0-only
+ .
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ .
+ Includes
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ Version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+
+Files:     test/mvx_player/dmabufheap/BufferAllocator.cpp
+           test/mvx_player/dmabufheap/BufferAllocator.h
+           test/mvx_player/dmabufheap/BufferAllocatorWrapper.cpp
+           test/mvx_player/dmabufheap/BufferAllocatorWrapper.h
+           test/mvx_player/dmabufheap/dmabufheap-defs.h
+Copyright: 2020 The Android Open Source Project
+License:   Apache-2.0
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+ http://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the complete text of the Apache License Version 2.0
+  can be found in `/usr/share/common-licenses/Apache-2.0'.
+
+Files:     include/md5.h
+           test/md5/md5.c
+           test/md5/md5.h
+Copyright: 2021 Arm Technology (China) Co., Ltd. The entire notice above must be reproduced on all authorized copies and copies may only be made to the extent permitted  a licensing agreement from Arm Technology (China) Co., Ltd.
+License:   __NO_LICENSE__
+
+Files:     test/utils/mvx_argparse.c
+Copyright: 2021 Arm Technology (China) Co., Ltd.
+License:   GPL-2.0+
+ This entire notice must be reproduced on all copies of this file
+ and copies of this file may only be made by a person if such person is
+ permitted to do so under the terms of a subsisting license agreement
+ from Arm Technology (China) Co., Ltd.
+ .
+ SPDX-License-Identifier: GPL-2.0-only
+ .
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ .
+ Include
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ Version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+
+Files:     include/fw_v2/mve_protocol_def.h
+Copyright: 2021 Arm Technology (China) Co., Ltd.
+License:   GPL-2.0+
+ This entire notice must be reproduced on all copies of this file
+ and copies of this file may only be made by a person if such person is
+ permitted to do so under the terms of a subsisting license agreement
+ from Arm Technology (China) Co., Ltd.
+ .
+ SPDX-License-Identifier: GPL-2.0-only
+ .
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ .
+ Copyright:
+ .
+ On Debian systems, the complete text of the GNU General Public License
+ Version 2 can be found in `/usr/share/common-licenses/GPL-2'.
+
+#----------------------------------------------------------------------------
+# Files marked as NO_LICENSE_TEXT_FOUND may be covered by the following
+# license/copyright files.
