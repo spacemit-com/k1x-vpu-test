@@ -14,45 +14,46 @@
  * limitations under the License.
  */
 
-#include "BufferAllocator.h"
 #include "BufferAllocatorWrapper.h"
+
 #include <errno.h>
 #include <sys/types.h>
+
+#include "BufferAllocator.h"
 
 extern "C" {
 
 BufferAllocator* CreateDmabufHeapBufferAllocator() {
-    return new BufferAllocator();
+  return new BufferAllocator();
 }
 
 void FreeDmabufHeapBufferAllocator(BufferAllocator* buffer_allocator) {
-    delete buffer_allocator;
+  delete buffer_allocator;
 };
 
-int DmabufHeapAlloc(BufferAllocator* buffer_allocator, const char* heap_name, size_t len,
-                    unsigned int heap_flags, size_t legacy_align) {
-    if (!buffer_allocator)
-        return -EINVAL;
-    return buffer_allocator->Alloc(heap_name, len, heap_flags, legacy_align);
+int DmabufHeapAlloc(BufferAllocator* buffer_allocator, const char* heap_name,
+                    size_t len, unsigned int heap_flags, size_t legacy_align) {
+  if (!buffer_allocator) return -EINVAL;
+  return buffer_allocator->Alloc(heap_name, len, heap_flags, legacy_align);
 }
 
-int DmabufHeapAllocSystem(BufferAllocator* buffer_allocator, bool cpu_access, size_t len,
-                          unsigned int heap_flags, size_t legacy_align) {
-    if (!buffer_allocator) return -EINVAL;
-    return buffer_allocator->AllocSystem(cpu_access, len, heap_flags, legacy_align);
+int DmabufHeapAllocSystem(BufferAllocator* buffer_allocator, bool cpu_access,
+                          size_t len, unsigned int heap_flags,
+                          size_t legacy_align) {
+  if (!buffer_allocator) return -EINVAL;
+  return buffer_allocator->AllocSystem(cpu_access, len, heap_flags,
+                                       legacy_align);
 }
 
-int DmabufHeapCpuSyncStart(BufferAllocator* buffer_allocator, unsigned int dmabuf_fd,
-                           SyncType sync_type) {
-    if (!buffer_allocator)
-        return -EINVAL;
-    return buffer_allocator->CpuSyncStart(dmabuf_fd, sync_type);
+int DmabufHeapCpuSyncStart(BufferAllocator* buffer_allocator,
+                           unsigned int dmabuf_fd, SyncType sync_type) {
+  if (!buffer_allocator) return -EINVAL;
+  return buffer_allocator->CpuSyncStart(dmabuf_fd, sync_type);
 }
 
-int DmabufHeapCpuSyncEnd(BufferAllocator* buffer_allocator, unsigned int dmabuf_fd,
-                         SyncType sync_type) {
-    if (!buffer_allocator)
-        return -EINVAL;
-    return buffer_allocator->CpuSyncEnd(dmabuf_fd, sync_type);
+int DmabufHeapCpuSyncEnd(BufferAllocator* buffer_allocator,
+                         unsigned int dmabuf_fd, SyncType sync_type) {
+  if (!buffer_allocator) return -EINVAL;
+  return buffer_allocator->CpuSyncEnd(dmabuf_fd, sync_type);
 }
 }

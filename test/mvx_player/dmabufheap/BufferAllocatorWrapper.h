@@ -17,9 +17,10 @@
 #ifndef BUFFER_ALLOCATOR_H_
 #define BUFFER_ALLOCATOR_H_
 
-#include "dmabufheap-defs.h"
 #include <stdbool.h>
 #include <sys/types.h>
+
+#include "dmabufheap-defs.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -32,17 +33,18 @@ BufferAllocator* CreateDmabufHeapBufferAllocator();
 
 void FreeDmabufHeapBufferAllocator(BufferAllocator* buffer_allocator);
 
-int DmabufHeapAlloc(BufferAllocator* buffer_allocator, const char* heap_name, size_t len,
-                    unsigned int heap_flags, size_t legacy_align);
+int DmabufHeapAlloc(BufferAllocator* buffer_allocator, const char* heap_name,
+                    size_t len, unsigned int heap_flags, size_t legacy_align);
 
-int DmabufHeapAllocSystem(BufferAllocator* buffer_allocator, bool cpu_access, size_t len,
-                          unsigned int heap_flags, size_t legacy_align);
+int DmabufHeapAllocSystem(BufferAllocator* buffer_allocator, bool cpu_access,
+                          size_t len, unsigned int heap_flags,
+                          size_t legacy_align);
 
-int DmabufHeapCpuSyncStart(BufferAllocator* buffer_allocator, unsigned int dmabuf_fd,
-                           SyncType sync_type);
+int DmabufHeapCpuSyncStart(BufferAllocator* buffer_allocator,
+                           unsigned int dmabuf_fd, SyncType sync_type);
 
-int DmabufHeapCpuSyncEnd(BufferAllocator* buffer_allocator, unsigned int dmabuf_fd,
-                         SyncType sync_type);
+int DmabufHeapCpuSyncEnd(BufferAllocator* buffer_allocator,
+                         unsigned int dmabuf_fd, SyncType sync_type);
 
 #ifdef __cplusplus
 }

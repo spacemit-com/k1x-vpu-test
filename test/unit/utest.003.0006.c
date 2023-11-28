@@ -10,23 +10,24 @@
  * and copies of this file may only be made by a person if such person is
  * permitted to do so under the terms of a subsisting license agreement
  * from Arm Technology (China) Co., Ltd.
- * 
+ *
  * SPDX-License-Identifier: GPL-2.0-only
- * 
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
  * as published by the Free Software Foundation; either version 2
  * of the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- * 
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301,
+ * USA.
+ *
  */
 
 /*
@@ -49,50 +50,48 @@ typedef int bool;
 #endif
 
 /**********************************************************
-* Facades
-**********************************************************/
+ * Facades
+ **********************************************************/
 
 struct driver {
-	char const * name;
+  char const* name;
 };
 
 struct device {
-	struct driver * driver;
+  struct driver* driver;
 };
 
 bool called = false;
-void * dev_get_drvdata( struct device * dev )
-{
-	called = true;
-	return NULL;
+void* dev_get_drvdata(struct device* dev) {
+  called = true;
+  return NULL;
 }
 
 /**********************************************************
-* Include artefact under test
-**********************************************************/
+ * Include artefact under test
+ **********************************************************/
 #include "extracted-code"
 
-int main( int argc, char ** argv )
-{
-	int reply = -1;
-	struct mvx_discovery discovery;
-	struct device device;
-	struct driver driver;
+int main(int argc, char** argv) {
+  int reply = -1;
+  struct mvx_discovery discovery;
+  struct device device;
+  struct driver driver;
 
-	char const * matches[2] = { "Driver-name", NULL };
+  char const* matches[2] = {"Driver-name", NULL};
 
-	device.driver = &driver;
-	driver.name = "xyz something that won't match";
+  device.driver = &driver;
+  driver.name = "xyz something that won't match";
 
-	discovery.matches = matches;
+  discovery.matches = matches;
 
-	/* Method is declared void so no return value to check.
-	 */
-	if ( 0 == mvx_bus_walker( &device, &discovery ) ) {
-		if ( false == called ) {
-			reply = 0;
-		}
-	}
+  /* Method is declared void so no return value to check.
+   */
+  if (0 == mvx_bus_walker(&device, &discovery)) {
+    if (false == called) {
+      reply = 0;
+    }
+  }
 
-	return reply;
+  return reply;
 }
