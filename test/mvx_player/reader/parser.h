@@ -33,6 +33,9 @@
 #ifndef __C_PARSER_H__
 #define __C_PARSER_H__
 
+#include <assert.h>
+#include "read_util.h"
+
 class reader {
  public:
   enum result {

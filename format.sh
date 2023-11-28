@@ -19,7 +19,7 @@
  # 4.  check the code and verify it again, code-stype optimization may cause trouble
 ###
 
-find . -name "*.cc" -o -name "*.c" -o -name "*.h" -o -name "*.hh" -o -name "*.cpp" | xargs clang-format -style=Google -i
+find . -name "*.cc" -o -name "*.c" -o -name "*.h" -o -name "*.hh" -o -name "*.cpp" -o -name "*.hpp" | xargs clang-format -style=Google -i
 git checkout include/mvx-v4l2-controls.h
 git checkout include/fw_v2/mve_protocol_def.h
 git checkout include/mvx_log_ram.h
