@@ -32,8 +32,6 @@ target_link_libraries(mvx_info PRIVATE mvx_player_obj mvxutils mvxmd5)
 install(TARGETS mvx_decoder
 		mvx_decoder_multi
 		mvx_encoder
-		mvx_encoder_gen
 		mvx_encoder_multi
-		mvx_info
 		RUNTIME
 		DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")

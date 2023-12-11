@@ -10,4 +10,4 @@ add_executable(mvx_logd ${SOURCES})
 target_include_directories(mvx_logd PRIVATE "${CMAKE_SOURCE_DIR}/include")
 
 # Install target.
-#install(TARGETS mvx_logd DESTINATION bin)
+install(TARGETS mvx_logd RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
