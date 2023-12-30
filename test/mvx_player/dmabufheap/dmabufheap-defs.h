@@ -19,7 +19,8 @@
 
 #include <linux/dma-buf.h>
 
-static const char kDmabufSystemHeapName[] = "system";
+//static const char kDmabufSystemHeapName[] = "system";
+static const char kDmabufSystemHeapName[] = "linux,cma@70000000";
 static const char kDmabufSystemUncachedHeapName[] = "system-uncached";
 
 typedef enum {
