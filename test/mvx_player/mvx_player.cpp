@@ -2807,7 +2807,7 @@ void Codec::Port::getTrySetFormat() {
     f.width = io->getWidth();
     f.height = io->getHeight();
     f.bytesperline = 0;
-    f.sizeimage = 10 * 1024 * 1024;
+    f.sizeimage = 1 * 1024 * 1024;
     // f.field = interlaced ? V4L2_FIELD_SEQ_TB : V4L2_FIELD_NONE;
   }
 
