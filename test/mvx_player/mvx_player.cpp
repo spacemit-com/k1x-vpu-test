@@ -2966,7 +2966,7 @@ void Codec::Port::allocateBuffers(size_t count) {
   freeBuffers();
 
   /* Request new buffer to be allocated. */
-  reqbuf.count = io->needDoubleCount() ? count * 2 : count * 2;
+  reqbuf.count = io->needDoubleCount() ? count * 2 : count;
   reqbuf.type = type;
   if (memory_type == V4L2_MEMORY_MMAP) {
     reqbuf.memory = V4L2_MEMORY_MMAP;
