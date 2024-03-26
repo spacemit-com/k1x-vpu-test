@@ -43,13 +43,14 @@ using namespace std;
 struct job {
   job(const char *dev, const string &inputFile, const uint32_t inputFormat,
       const string &outputFile, const uint32_t outputFormat,
-      const size_t outputStride)
+      const size_t outputStride, const string &inputFileFormat)
       : dev(dev),
         inputFile(inputFile),
         inputFormat(inputFormat),
         outputFile(outputFile),
         outputFormat(outputFormat),
         outputStride(outputStride),
+        inputFileFormat(inputFileFormat),
         ret(0) {}
 
   const char *dev;
@@ -58,6 +59,7 @@ struct job {
   string outputFile;
   uint32_t outputFormat;
   size_t outputStride;
+  string inputFileFormat;
   int ret;
 };
 
@@ -69,10 +71,18 @@ void *decodeThread(void *arg) {
   string logf = j->outputFile + ".log";
   ofstream log(logf.c_str());
 
-  InputFile inputFile = InputFile(is, j->inputFormat);
+  InputFile *inputFile;
   OutputFile outputFile = OutputFile(os, j->outputFormat);
 
-  Decoder decoder(j->dev, inputFile, outputFile, true, log);
+  if ((j->inputFileFormat).compare("ivf") == 0) {
+    inputFile = new InputIVF(is, j->inputFormat);
+  } else if ((j->inputFileFormat).compare("rcv") == 0) {
+    inputFile = new InputRCV(is);
+  } else if ((j->inputFileFormat).compare("raw") == 0) {
+    inputFile = new InputFile(is, j->inputFormat);
+  }
+
+  Decoder decoder(j->dev, *inputFile, outputFile, true, log);
   j->ret = decoder.stream();
 
   return j;
@@ -90,6 +100,9 @@ int main(int argc, const char *argv[]) {
   mvx_argp_add_opt(&argp, 'i', "inputformat", true, 1, "h264", "Pixel format.");
   mvx_argp_add_opt(&argp, 'o', "outputformat", true, 1, "yuv420",
                    "Output pixel format.");
+  mvx_argp_add_opt(&argp, 'f', "format", true, 1, "ivf",
+                   "Input container format. [ivf, rcv, raw]\n\t\tFor ivf input "
+                   "format will be taken from IVF header.");
   mvx_argp_add_opt(&argp, 's', "stride", true, 1, "1", "Stride alignment.");
   mvx_argp_add_opt(&argp, 'n', "nsessions", true, 1, "1",
                    "Number of sessions.");
@@ -127,7 +140,8 @@ int main(int argc, const char *argv[]) {
     job *j =
         new job(mvx_argp_get(&argp, "dev", 0),
                 string(mvx_argp_get(&argp, "input", 0)), inputFormat, ss.str(),
-                outputFormat, mvx_argp_get_int(&argp, "stride", 0));
+                outputFormat, mvx_argp_get_int(&argp, "stride", 0),
+                string(mvx_argp_get(&argp, "format", 0)));
 
     ret = pthread_create(&tid[i], NULL, decodeThread, j);
     if (ret != 0) {
