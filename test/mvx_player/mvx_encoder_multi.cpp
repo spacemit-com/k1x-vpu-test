@@ -44,7 +44,7 @@ struct job {
   job(const char *dev, const string &inputFile, const uint32_t inputFormat,
       const string &outputFile, const uint32_t outputFormat,
       const size_t outputStride, const uint32_t w, const uint32_t h,
-      const uint32_t f)
+      const uint32_t f, const string &inputFileFormat)
       : dev(dev),
         inputFile(inputFile),
         inputFormat(inputFormat),
@@ -54,6 +54,7 @@ struct job {
         width(w),
         height(h),
         frames(f),
+        inputFileFormat(inputFileFormat),
         ret(0) {}
 
   const char *dev;
@@ -65,6 +66,7 @@ struct job {
   uint32_t width;
   uint32_t height;
   uint32_t frames;
+  string inputFileFormat;
   int ret;
 };
 
@@ -78,12 +80,19 @@ void *encodeThread(void *arg) {
 
   InputFileFrame inputFile =
       InputFileFrame(is, j->inputFormat, j->width, j->height, j->outputStride);
-  OutputFile outputFile = OutputFile(os, j->outputFormat);
+  OutputFile *outputFile;
 
-  Encoder encoder(j->dev, inputFile, outputFile, true, log);
+  if ((j->inputFileFormat).compare("ivf") == 0) {
+    outputFile = new OutputIVF(os, j->outputFormat, j->width, j->height);
+  } else if ((j->inputFileFormat).compare("raw") == 0) {
+    outputFile = new OutputFile(os, j->outputFormat);
+  }
+
+  Encoder encoder(j->dev, inputFile, *outputFile, true, log);
   if (j->frames > 0) {
     encoder.setFrameCount(j->frames);
   }
+  encoder.setRateControl("off", 0, 0);
   j->ret = encoder.stream();
 
   return j;
@@ -102,10 +111,13 @@ int main(int argc, const char *argv[]) {
                    "Pixel format.");
   mvx_argp_add_opt(&argp, 'o', "outputformat", true, 1, "h264",
                    "Output pixel format.");
+  mvx_argp_add_opt(&argp, 'f', "format", true, 1, "ivf",
+                   "Input container format. [ivf, rcv, raw]\n\t\tFor ivf input "
+                   "format will be taken from IVF header.");
   mvx_argp_add_opt(&argp, 's', "stride", true, 1, "1", "Stride alignment.");
   mvx_argp_add_opt(&argp, 'w', "width", true, 1, "1280", "Stride alignment.");
   mvx_argp_add_opt(&argp, 'h', "height", true, 1, "720", "Stride alignment.");
-  mvx_argp_add_opt(&argp, 'f', "frames", true, 1, "0",
+  mvx_argp_add_opt(&argp, 'fr', "frames", true, 1, "0",
                    "Specfied frame count to be processed.");
   mvx_argp_add_opt(&argp, 'n', "nsessions", true, 1, "1",
                    "Number of sessions.");
@@ -146,7 +158,8 @@ int main(int argc, const char *argv[]) {
                 outputFormat, mvx_argp_get_int(&argp, "stride", 0),
                 mvx_argp_get_int(&argp, "width", 0),
                 mvx_argp_get_int(&argp, "height", 0),
-                mvx_argp_get_int(&argp, "frames", 0));
+                mvx_argp_get_int(&argp, "frames", 0),
+                string(mvx_argp_get(&argp, "format", 0)));
 
     ret = pthread_create(&tid[i], NULL, encodeThread, j);
     if (ret != 0) {
